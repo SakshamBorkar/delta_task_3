@@ -4,4 +4,8 @@
 ## [Link to site](https://d-tunes-delta.netlify.app/)
 ### Link - `https://d-tunes-delta.netlify.app/`  
 
-## Details - 
+### Details -
+The site is made using plain **HTML, CSS, and Vanilla JS**. Frameworks are not used.
+Backend Database used is **Firebase**
+
+Temporary Login Details for site - 
