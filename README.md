@@ -8,4 +8,7 @@
 The site is made using plain **HTML, CSS, and Vanilla JS**. Frameworks are not used.
 Backend Database used is **Firebase**
 
-Temporary Login Details for site - 
+
+*Temporary Login Details for site -* 
+Email- `nehila7329@orsbap.com`
+Password - `123456789`
