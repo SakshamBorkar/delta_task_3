@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="login.js" defer></script>
+    <script type="module" src="register.js" defer></script>
+</head>
+
+<body>
+    <div class="login-signup-container">
+        <div class="signup-box">
+            <form id="signup-form">
+                <h2>Join Us!<br><span>Create Your Account</span></h2>
+                <div class="inputBox">
+                    <input type="text" placeholder="Username" id="user">
+                    <i class="fa-regular fa-user"></i>
+                </div>
+                <div class="inputBox">
+                    <input type="email" placeholder="Email" id="email">
+                    <i class="fa-regular fa-envelope"></i>
+                </div>
+                <div class="inputBox">
+                    <input type="password" placeholder="Password" id="password">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <div class="inputBox">
+                    <input type="submit" value="Sign Up" id="submit">
+                </div>
+            </form>
+            <h4>OR</h4>
+            <div class="Login">
+                <p>Already have an account?</p>
+                <div class="loginBox">
+                    <input type="button" value="Log In" onclick="window.location.href='index.html'">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

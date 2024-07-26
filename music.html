@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="utility.css">
+    <title>D-Tunes: Your daily music booster</title>
+    <script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-storage-compat.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyDCIho9gZTaZRrWbJR-Qw41jACMJwDovxI",
+            authDomain: "dtunes-53f1e.firebaseapp.com",
+            projectId: "dtunes-53f1e",
+            storageBucket: "dtunes-53f1e.appspot.com",
+            messagingSenderId: "558538668299",
+            appId: "1:558538668299:web:5f1484c2f042596cc60a0e",
+            measurementId: "G-RJ201WTZ63"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        var db = firebase.firestore();
+        var storage = firebase.storage();
+    </script>
+</head>
+
+<body>
+    <div class="container flex bg-black">
+        <div class="left">
+            <div class="close">
+                <img class="invert" src="close.svg" alt="">
+            </div>
+            <div class="home bg-grey rounded m-1 p-1">
+                <div class="logo"><img width="50px" class="invert" src="logo.svg" alt="Logo">
+                    D-Tunes</div>
+                <ul>
+                    <li><img class="invert" src="home.svg" alt="Home">Home</li>
+                    <li><img class="invert" src="search.svg" alt="Search">Search</li>
+                </ul>
+            </div>
+            <div class="library bg-grey rounded m-1 p-1">
+                <div class="heading">
+                    <img class="invert" src="playlist.svg" alt="playlist">
+                    <h2>Your library</h2>
+                </div>
+                <div class="songList">
+                    <ul>
+                    </ul>
+                </div>
+                <div>
+                    <button class="bttn"><img class="add invert" src="add.svg" alt="">Add your songs</button>
+                </div>
+            </div>
+        </div>
+        <div class="right bg-grey rounded">
+            <div class="header">
+                <div class="nav">
+                    <div class="hamburgerCont ">
+                        <img class="invert hamburger" src="hamburger.svg" alt="">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
+                            color="#000000" fill="none">
+                            <path d="M15 6C15 6 9.00001 10.4189 9 12C8.99999 13.5812 15 18 15 18" stroke="#ffffff"
+                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
+                            color="#000000" fill="none">
+                            <path d="M9.00005 6C9.00005 6 15 10.4189 15 12C15 13.5812 9 18 9 18" stroke="#ffffff"
+                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button class="signupbtn">Sign up</button>
+                    <button class="loginbtn">Log in</button>
+                </div>
+            </div>
+            <div class="playifyPlaylists">
+                <h1>D-Tunes playlist</h1>
+                <div class="cardContainer">
+                    <div data-folder="Arijit_Singh" class="card">
+                        <div class="play">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="100%" height="100%"
+                                fill="none">
+                                <circle cx="12" cy="12" r="12" fill="green" />
+                                <circle cx="12" cy="12" r="10" stroke="" stroke-width="" fill="none" />
+                                <path d="M9,7 L16,12 L9,17 Z" fill="#000000" />
+                            </svg>
+                        </div>
+                        <img src="https://image-cdn-ak.spotifycdn.com/image/ab67706c0000d72c2d7f64086d7de1b1ee609a5d"
+                            alt="">
+                        <h2 class="songTitle">Arijit Singh</h2>
+                        <p>Listen to some of the best songs of the artist
+                        </p>
+                    </div>
+
+                    <div data-folder="Atif_Aslam" class="card">
+                        <div class="play">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="100%" height="100%"
+                                fill="none">
+                                <circle cx="12" cy="12" r="12" fill="green" />
+                                <circle cx="12" cy="12" r="10" stroke="" stroke-width="" fill="none" />
+                                <path d="M9,7 L16,12 L9,17 Z" fill="#000000" />
+                            </svg>
+                        </div>
+                        <img src="https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da84e8a06e80541597ff06484d71"
+                            alt="">
+                        <h2 class="songTitle">Atif Aslam</h2>
+                        <p>What your mind need is 'Atif'!
+                        </p>
+                    </div>
+
+                    <div data-folder="Punjabi_Hits" class="card">
+                        <div class="play">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="100%" height="100%"
+                                fill="none">
+                                <circle cx="12" cy="12" r="12" fill="green" />
+                                <circle cx="12" cy="12" r="10" stroke="" stroke-width="" fill="none" />
+                                <path d="M9,7 L16,12 L9,17 Z" fill="#000000" />
+                            </svg>
+                        </div>
+                        <img src="https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da842fea502fc4b5c1343e8e5dd4"
+                            alt="">
+                        <h2 class="songTitle">Punjabi Hits!</h2>
+                        <p>Get fired up...Oyee Pajii!!!
+                        </p>
+                    </div>
+                    <div data-folder="Hollywood_Bangers" class="card">
+                        <div class="play">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="100%" height="100%"
+                                fill="none">
+                                <circle cx="12" cy="12" r="12" fill="green" />
+                                <circle cx="12" cy="12" r="10" stroke="" stroke-width="" fill="none" />
+                                <path d="M9,7 L16,12 L9,17 Z" fill="#000000" />
+                            </svg>
+                        </div>
+                        <img src="https://mosaic.scdn.co/300/ab67616d00001e027833c9a792ad032d788d4011ab67616d00001e02897f73256b9128a9d70eaf66ab67616d00001e02ba5db46f4b838ef6027e6f96ab67616d00001e02ea3ef7697cfd5705b8f47521"
+                            alt="">
+                        <h2 class="songTitle">Hollywood Bangers</h2>
+                        <p>Music to prefectly match your taste
+                        </p>
+                    </div>
+                    <div data-folder="All_Time_Hits" class="card">
+                        <div class="play">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="100%" height="100%"
+                                fill="none">
+                                <circle cx="12" cy="12" r="12" fill="green" />
+                                <circle cx="12" cy="12" r="10" stroke="" stroke-width="" fill="none" />
+                                <path d="M9,7 L16,12 L9,17 Z" fill="#000000" />
+                            </svg>
+                        </div>
+                        <img src="https://t.scdn.co/images/728ed47fc1674feb95f7ac20236eb6d7.jpeg" alt="">
+                        <h2 class="songTitle">Personal</h2>
+                        <p>These will never get old
+                        </p>
+                    </div>
+                </div>
+                <div class="playbar">
+                    <div class="seekbar">
+                        <div class="circle">
+
+                        </div>
+                    </div>
+                    <div class="abovebar">
+                        <div class="songinfo ">
+
+                        </div>
+                        <div class="songbuttons invert">
+                            <img width="35" id="previous" src="prevsong.svg" alt="">
+                            <img width="35" id="play" src="play.svg" alt="">
+                            <img width="35" id="next" src="nextsong.svg" alt="">
+                        </div>
+                        <div class="timevol">
+                            <div class="songtime ">
+                            </div>
+                            <div class="volume">
+                                <div class="range">
+                                    <input type="range" name="volume">
+                                </div>
+                                <img class="invert" width="30px" src="volume.svg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+
+</html>

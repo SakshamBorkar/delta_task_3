@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Songs</title>
+  <script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-storage-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-firestore-compat.js"></script>
+
+
+</head>
+
+<body>
+  <script defer>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDCIho9gZTaZRrWbJR-Qw41jACMJwDovxI",
+      authDomain: "dtunes-53f1e.firebaseapp.com",
+      projectId: "dtunes-53f1e",
+      storageBucket: "dtunes-53f1e.appspot.com",
+      messagingSenderId: "558538668299",
+      appId: "1:558538668299:web:5f1484c2f042596cc60a0e",
+      measurementId: "G-RJ201WTZ63"
+    };
+    firebase.initializeApp(firebaseConfig);
+    var db = firebase.firestore();
+    var storageRef = firebase.storage().ref();
+
+    // Upload file function
+    function uploadFile() {
+      var file = document.getElementById('fileInput').files[0];
+      var songTitle = document.getElementById('songTitle').value;
+      var artistName = document.getElementById('artistName').value;
+
+      if (!file || !songTitle || !artistName) {
+        alert("Please fill all fields and select a file.");
+        return;
+      }
+
+      var fileName = file.name;
+      var uploadTask = storageRef.child('songs/' + fileName).put(file);
+
+      uploadTask.on('state_changed',
+        function (snapshot) {
+          // Observe state change events such as progress, pause, and resume
+        },
+        function (error) {
+          // Handle unsuccessful uploads
+          console.error("Error uploading file:", error);
+        },
+        function () {
+          // Handle successful uploads on complete
+          uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+            // Save song details to Firestore
+            db.collection("Personal").add({
+              title: songTitle,
+              artist: artistName,
+              url: downloadURL,
+              fileName: fileName
+            })
+              .then(function (docRef) {
+                console.log("Document written with ID: ", docRef.id);
+                document.getElementById('fileURL').innerText = 'File available at ' + downloadURL;
+                fetchFileList();
+              })
+              .catch(function (error) {
+                console.error("Error adding document: ", error);
+              });
+          });
+        }
+      );
+    }
+
+
+    // Fetch file list on page load
+
+
+  </script>
+  <input type="file" placeholder="Songs" id="fileInput">
+  <input type="text" id="songTitle" placeholder="Song Title" />
+  <input type="text" id="artistName" placeholder="Artist Name" />
+
+
+
+  <p id="fileURL"></p>
+
+  <!-- Display file list -->
+  <ul id="fileList"></ul>
+  <button onclick="uploadFile()">Submit</button>
+
+
+</body>
+
+</html>
